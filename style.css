@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+
+:root {
+  --hero-width: 100%;
+  --hero-height: 100%;
+
+  --card-width: 200px;
+  --card-height: 320px;
+  --card-border-radius: 20px;
+  --card-margin: 16px;
+  --card-bg-size: cover;
+  --card-bg-position: center;
+  --card-padding: 16px;
+  --card-display: flex;
+  --card-align-items: flex-end;
+}
+
+*{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+.hero_section {
+  width: var(--hero-width);
+  height: var(--hero-height);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  overflow: hidden;
+  font-family: "Montserrat";
+  color: #fff;
+}
+
+.hero_section_details {
+  width: 50%;
+  align-self: center;
+}
+
+.hero_section_card_slider {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  width: 100%;
+}
+
+.card_container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: calc(var(--card-width) * 4.7);
+  padding-right: 16px;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.card_container::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  margin: var(--card-margin);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  z-index: 10;
+  background-size: var(--card-bg-size);
+  background-position: var(--card-bg-position);
+  flex: 0 0 auto;
+  display: var(--card-display);
+  align-items: var(--card-align-items);
+  box-shadow: 5px 6px 5px 1px rgb(0 0 0 / 40%);
+}
+
+.card > * {
+  pointer-events: none;
+}
+
+.card.slideIn {
+  animation: slideInFromRight 1s forwards;
+}
+
+.card.slideOut {
+  animation: slideOutFromRight 1s forwards;
+}
+
+.card .card_info {
+  animation: cardTextSlideIn 1s forwards; 
+}
+
+.card .card_info.textSlideOut {
+  animation: cardTextSlideOut 0.2s forwards; 
+}
+
+.card .card_info .card_info_name {
+  text-transform: uppercase;
+}
+
+.card_fullscreen {
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: var(--card-border-radius);
+  background-size: var(--card-bg-size);
+  background-position: var(--card-bg-position);
+  padding: var(--card-padding);
+  display: var(--card-display);
+  align-items: var(--card-align-items);
+  animation: cardFullscreenScaleUp 1s forwards;
+  position: absolute !important;
+  margin: 0 !important;
+}
+
+.card_fullscreen_details {
+  font-size: 32px;
+  margin-left: 32px;
+  animation: cardFullscreenDetailsSlideIn 1s forwards;
+}
+
+.card_fullscreen_details h1 {
+  text-transform: uppercase;
+}
+
+@keyframes cardFullscreenScaleUp {
+  100% {
+    width: var(--hero-width);
+    height: var(--hero-height);
+    border-radius: 0px;
+    left: 0;
+    top: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    margin-left: calc(var(--card-margin) * 3);
+  }
+  100% {
+    margin-left: var(--card-margin);
+  }
+}
+
+@keyframes slideOutFromRight{
+  100% {
+    margin-left: calc((var(--card-width) + var(--card-margin)) * -1);
+    display: none;
+  }
+}
+
+@keyframes cardTextSlideIn {
+  0% {
+    transform: translateY(var(--card-padding));
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes cardTextSlideOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--card-padding));
+    opacity: 0;
+  }
+}
+
+@keyframes cardFullscreenDetailsSlideIn {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
